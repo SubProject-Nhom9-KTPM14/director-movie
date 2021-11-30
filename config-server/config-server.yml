@@ -1,15 +1,8 @@
-server:
-  port: 9001
-
-spring:
-  appication:
-    name: DIRECTOR-SERVICE
-
 eureka:
   client:
     register-with-eureka:
       value: true
-    fetch-regítry:
+    fetch-registry:
       value: true
     service-url:
       defaultZone: http://localhost:8761/eureka
