@@ -1,0 +1,66 @@
+package com.se.director.controller;
+
+import com.se.director.authen.UserPrincipal;
+import com.se.director.model.Director;
+import com.se.director.model.Token;
+import com.se.director.service.DirectorService;
+import com.se.director.service.TokenService;
+import com.se.director.util.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class AuthController {
+
+    @Autowired
+    private DirectorService directorService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private TokenService tokenService;
+
+    @PostMapping("/register")
+    public Director register(@RequestBody Director director){
+        director.setPassword(new BCryptPasswordEncoder().encode(director.getPassword()));
+        director.setRole("USER");
+        return directorService.createDirector(director);
+    }
+    @PostMapping("/register-admin")
+    public Director registerAddmin(@RequestBody Director director){
+        director.setPassword(new BCryptPasswordEncoder().encode(director.getPassword()));
+        director.setRole("ADMIN");
+        return directorService.createDirector(director);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Director user){
+        UserPrincipal userPrincipal = directorService.findByUsername(user.getUsername());
+        if (null == user || !new BCryptPasswordEncoder()
+                .matches(user.getPassword(), userPrincipal.getPassword())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Account or password is not valid!");
+        }
+        Token token = new Token();
+        token.setToken(jwtUtil.generateToken(userPrincipal));
+        token.setTokenExpDate(jwtUtil.generateExpirationDate());
+        token.setCreatedBy(userPrincipal.getUserId());
+        tokenService.createToken(token);
+        return ResponseEntity.ok(token.getToken());
+    }
+    @GetMapping("/{id}")
+    public  Director getDi(@PathVariable Long id){
+        return directorService.get(id);
+    }
+
+    @GetMapping("/hello")
+    @PreAuthorize("hasAnyAuthority('USER')")
+    public ResponseEntity hello(){
+        return ResponseEntity.ok("hello");
+    }
+
+}
