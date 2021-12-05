@@ -2,16 +2,10 @@ server:
   port: 9001
 
 spring:
-  appication:
+  application:
     name: DIRECTOR-SERVICE
-
-eureka:
-  client:
-    register-with-eureka:
-      value: true
-    fetch-regítry:
-      value: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    instance:
-      hostname: localhost
+  config:
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: http://localhost:8888
