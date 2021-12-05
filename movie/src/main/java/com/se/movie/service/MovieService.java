@@ -6,6 +6,7 @@ import com.se.movie.model.Movie;
 import com.se.movie.repository.MovieRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,6 +20,7 @@ public class MovieService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Cacheable(value = "Movie", key = "#id")
     public Movie getMovieById(Long id){
         Optional<Movie> obj = movieRepository.findById(id);
         if(obj.isPresent()){
@@ -27,6 +29,7 @@ public class MovieService {
         return null;
     }
 
+    @Cacheable(value = "MovieApplication", key = "movieId")
     public ResponseTemplateVO getMovieWithDirectorById(Long movieId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Movie movie = getMovieById(movieId);
