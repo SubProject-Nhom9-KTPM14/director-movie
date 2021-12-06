@@ -34,4 +34,12 @@ public class Token extends BaseEntity {
     public void setTokenExpDate(Date tokenExpDate) {
         this.tokenExpDate = tokenExpDate;
     }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "token='" + token + '\'' +
+                ", tokenExpDate=" + tokenExpDate +
+                '}';
+    }
 }

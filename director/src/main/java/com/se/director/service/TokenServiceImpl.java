@@ -19,5 +19,10 @@ public class TokenServiceImpl implements TokenService {
     public Token findByToken(String token) {
         return tokenRepository.findByToken(token);
     }
+
+    @Override
+    public Token findById(Long id) {
+       return tokenRepository.findIdUser(id);
+    }
 }
 
