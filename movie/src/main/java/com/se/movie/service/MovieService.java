@@ -55,14 +55,10 @@ public class MovieService {
 //        return null;
         return (Movie) hashOperations.get("MOVIE", id);
     }
-<<<<<<< HEAD
+
     @RateLimiter(name = "timeoutExample")
    // @Retry(name="intervalFunctionRandomExample")
     @Retry(name="basic")
-   // @Cacheable(value = "MovieApplication", key = "#movieId")
-=======
-
->>>>>>> c55b702f0aa7655b0e894519e3a609a491ba33e0
     public ResponseTemplateVO getMovieWithDirectorById(Long movieId) {
 
         ResponseTemplateVO vo = new ResponseTemplateVO();

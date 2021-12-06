@@ -33,15 +33,12 @@ import java.util.stream.StreamSupport;
 @EnableEurekaClient
 public class MovieApplication {
 
-
+	public static void main(String[] args) {
+		SpringApplication.run(MovieApplication.class, args);
+	}
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
-	}
-
-
-	public static void main(String[] args) {
-		SpringApplication.run(MovieApplication.class, args);
 	}
 
 	@Bean

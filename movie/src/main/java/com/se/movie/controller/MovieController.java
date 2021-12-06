@@ -25,11 +25,9 @@ public class MovieController {
         return movieService.getMovieWithDirectorById(id);
     }
 
-<<<<<<< HEAD
-=======
     @PostMapping("/saveMovie")
     public Movie saveMovie(@RequestBody Movie movie){
         return movieService.saveMovie(movie);
     }
->>>>>>> c55b702f0aa7655b0e894519e3a609a491ba33e0
+
 }
