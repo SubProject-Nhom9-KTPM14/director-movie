@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -29,6 +30,11 @@ public class DirectorService {
             return obj.get();
         }
         return null;
+    }
+
+    @Cacheable(value = "Director")
+    public List<Director> getAllDirectors(){
+            return directorRepository.findAll();
     }
 
     @Cacheable(value = "Director")
