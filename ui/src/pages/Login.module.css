@@ -1,0 +1,24 @@
+.container {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: block;
+}
+
+.form {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 20%;
+}
+
+.button {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}

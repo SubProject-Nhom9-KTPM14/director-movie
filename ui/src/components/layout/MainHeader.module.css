@@ -1,0 +1,24 @@
+.title {
+  display: inline-block;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-button {
+  font-weight: 400;
+}
+
+.home-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
