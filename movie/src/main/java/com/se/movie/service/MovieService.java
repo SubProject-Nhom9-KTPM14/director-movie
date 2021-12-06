@@ -20,7 +20,7 @@ public class MovieService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Cacheable(value = "Movie", key = "#id")
+//    @Cacheable(value = "Movie", key = "#id")
     public Movie getMovieById(Long id){
         Optional<Movie> obj = movieRepository.findById(id);
         if(obj.isPresent()){
@@ -29,7 +29,7 @@ public class MovieService {
         return null;
     }
 
-    @Cacheable(value = "MovieApplication", key = "movieId")
+//    @Cacheable(value = "MovieApplication", key = "movieId")
     public ResponseTemplateVO getMovieWithDirectorById(Long movieId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Movie movie = getMovieById(movieId);
