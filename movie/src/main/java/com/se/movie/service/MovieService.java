@@ -63,10 +63,11 @@ public class MovieService {
 
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Movie movie = getMovieById(movieId);
-            System.out.println(movie);
-            Director director = restTemplate.getForObject("http://localhost:9001/directors/" + movie.getDirectorId(), Director.class);
-            vo.setMovie(movie);
-            vo.setDirector(director);
-           return vo;
+        System.out.println(movie);
+        Director director = restTemplate.getForObject("http://DIRECTOR-SERVICE/directors/" + movie.getDirectorId(), Director.class);
+        vo.setMovie(movie);
+        vo.setDirector(director);
+
+        return vo;
     }
 }
