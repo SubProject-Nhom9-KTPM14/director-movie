@@ -4,10 +4,14 @@ import com.se.director.authen.UserPrincipal;
 import com.se.director.model.Director;
 import com.se.director.repository.DirectorRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,30 +23,33 @@ import java.util.Set;
 @Service
 @Slf4j
 public class DirectorService {
+    final Logger logger = LoggerFactory.getLogger(DirectorService.class);
+
     @Autowired
     private DirectorRepository directorRepository;
 
+    private HashOperations hashOperations;
+    private RedisTemplate redisTemplate;
 
-    @Cacheable(value = "Director", key = "#id")
+    public DirectorService(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        this.hashOperations = redisTemplate.opsForHash();
+    }
+
     public Director getDirectorById(Long id){
-        Optional<Director> obj = directorRepository.findById(id);
-        if(obj.isPresent()){
-            return obj.get();
-        }
-        return null;
+//        Optional<Director> obj = directorRepository.findById(id);
+//        if(obj.isPresent()){
+//            return obj.get();
+//        }
+//        return null;
+        return (Director) hashOperations.get("DIRECTOR", id);
     }
 
-    @Cacheable(value = "Director")
     public List<Director> getAllDirectors(){
-            return directorRepository.findAll();
+//            return directorRepository.findAll();
+        return hashOperations.values("DIRECTOR");
     }
 
-    @Cacheable(value = "Director")
-    public List<Director>getAllDirector(){
-        return directorRepository.findAll();
-    }
-
-    @CachePut(value = "Director", key = "#id")
     public Director updateDirector(Director director, Long id){
         Director dir = directorRepository.findById(id).get();
         dir.setFirstName(director.getFirstName());
@@ -52,15 +59,21 @@ public class DirectorService {
         dir.setGender(director.isGender());
         dir.setUsername(director.getUsername());
         dir.setPassword(director.getPassword());
+        hashOperations.put("DIRECTOR", dir.getId(), dir);
+        logger.info(String.format("User with ID %s updated", id));
         return directorRepository.save(dir);
     }
 
-    @CacheEvict(value = "Director", key = "#id")
     public void deleteDirector(Long id){
+        hashOperations.delete("DIRECTOR", id);
         directorRepository.deleteById(id);
+        logger.info(String.format("User with ID %s deleted", id));
     }
     public Director createDirector(Director user) {
-        return directorRepository.saveAndFlush(user);
+        Director director = directorRepository.saveAndFlush(user);
+        hashOperations.put("DIRECTOR", director.getId(), director);
+        logger.info(String.format("DIRECTOR with ID %s saved", user.getId()));
+        return director;
     }
     public UserPrincipal findByUsername(String username) {
         Director user = directorRepository.findByUsername(username);
@@ -75,6 +88,7 @@ public class DirectorService {
         }
         return userPrincipal;
     }
+
     public Director get(Long id){
         return directorRepository.findById(id).get();
     }
