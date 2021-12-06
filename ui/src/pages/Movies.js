@@ -1,4 +1,7 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions/movie.action";
 
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,6 +12,15 @@ import Typography from "@material-ui/core/Typography";
 import classes from "./Movies.module.css";
 
 const Movies = () => {
+  const dispatch = useDispatch();
+  const [movieId, setMovieId] = useState(1);
+  const movie = useSelector((state) => state.movie.movieId);
+  useEffect(() => {
+    dispatch(actions.getMovieById(1));
+  }, []);
+
+  console.log("movies", movie);
+
   return (
     <main className={classes.container}>
       <div className={classes.grid}>

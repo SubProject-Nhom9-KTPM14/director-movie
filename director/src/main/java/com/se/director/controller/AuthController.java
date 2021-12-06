@@ -45,12 +45,24 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Account or password is not valid!");
         }
-        Token token = new Token();
-        token.setToken(jwtUtil.generateToken(userPrincipal));
-        token.setTokenExpDate(jwtUtil.generateExpirationDate());
-        token.setCreatedBy(userPrincipal.getUserId());
-        tokenService.createToken(token);
-        return ResponseEntity.ok(token.getToken());
+        Token token = tokenService.findById(userPrincipal.getUserId());
+        System.out.println(userPrincipal.toString());
+
+        if(token==null) {
+            Token newToken= new Token();
+            newToken.setToken(jwtUtil.generateToken(userPrincipal));
+            newToken.setTokenExpDate(jwtUtil.generateExpirationDate());
+            newToken.setCreatedBy(userPrincipal.getUserId());
+            tokenService.createToken(newToken);
+            return ResponseEntity.ok(newToken.getToken());
+        }else {
+            token.setToken(jwtUtil.generateToken(userPrincipal));
+            token.setTokenExpDate(jwtUtil.generateExpirationDate());
+            token.setCreatedBy(userPrincipal.getUserId());
+            tokenService.createToken(token);
+            return ResponseEntity.ok(token.getToken());
+        }
+
     }
     @GetMapping("/{id}")
     public  Director getDi(@PathVariable Long id){

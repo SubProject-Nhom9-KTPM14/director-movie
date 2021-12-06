@@ -6,7 +6,10 @@ import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import classes from "./MainHeader.module.css";
 import logo from "../../assets/logo_purple.png";
 
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+
 const MainHeader = () => {
+  const navigate = useNavigate();
   const Logo = <img src={logo} className={classes.logo} />;
 
   return (
@@ -18,16 +21,32 @@ const MainHeader = () => {
         >
           {Logo}
           <div className={classes.buttons}>
-            <Button color="default" className={classes["menu-button"]}>
+            <Button
+              color="default"
+              className={classes["menu-button"]}
+              onClick={() => navigate("/")}
+            >
               Home
             </Button>
-            <Button color="default" className={classes["menu-button"]}>
+            <Button
+              color="default"
+              className={classes["menu-button"]}
+              onClick={() => navigate("/movies")}
+            >
               Movies
             </Button>
-            <Button color="default" className={classes["menu-button"]}>
+            <Button
+              color="default"
+              className={classes["menu-button"]}
+              onClick={() => navigate("/register")}
+            >
               Register
             </Button>
-            <Button color="default" className={classes["menu-button"]}>
+            <Button
+              color="default"
+              className={classes["menu-button"]}
+              onClick={() => navigate("/login")}
+            >
               Login
             </Button>
           </div>
