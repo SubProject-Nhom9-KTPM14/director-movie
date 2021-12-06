@@ -1,0 +1,27 @@
+.container {
+  width: 65%;
+  min-height: 650px;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 25px;
+}
+
+.card {
+  max-width: 345px;
+}
+
+.media {
+  height: 350px;
+}

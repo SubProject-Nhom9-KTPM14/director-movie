@@ -23,41 +23,79 @@ const Register = () => {
   };
 
   const Title = (
-    <Typography variant="h6" className={classes.title}>
+    <Typography variant="h5" className={classes.title}>
       REGISTER
     </Typography>
   );
 
   return (
     <main className={classes.container}>
-      {Title}
       <form className={classes.form}>
-        <TextField id="first-name" label="FIRST NAME" variant="filled" />
-        <TextField id="last-name" label="LAST NAME" variant="filled" />
-        <TextField id="age" label="AGE" variant="filled" />
-        <TextField id="address" label="ADDRESS" variant="filled" />
+        {Title}
+        <TextField
+          id="first-name"
+          label="First Name"
+          variant="outlined"
+          helperText=" "
+        />
+        <TextField
+          id="last-name"
+          label="Last Name"
+          variant="outlined"
+          helperText=" "
+        />
+        <TextField id="age" label="Age" variant="outlined" helperText=" " />
+        <TextField
+          id="address"
+          label="Address"
+          variant="outlined"
+          helperText=" "
+        />
 
         <FormGroup>
-          <FormControlLabel
-            label="Nam"
-            control={
-              <Checkbox checked={checked.nam} onChange={onChange} name="nam" />
-            }
-          />
-          <FormControlLabel
-            label="Nu"
-            control={
-              <Checkbox checked={checked.nu} onChange={onChange} name="nu" />
-            }
-          />
+          <div className={classes.gender}>
+            <FormControlLabel
+              label="Male"
+              control={
+                <Checkbox
+                  color="primary"
+                  checked={checked.nam}
+                  onChange={onChange}
+                  name="nam"
+                />
+              }
+            />
+            <FormControlLabel
+              label="Female"
+              control={
+                <Checkbox
+                  color="primary"
+                  checked={checked.nu}
+                  onChange={onChange}
+                  name="nu"
+                />
+              }
+            />
+          </div>
         </FormGroup>
 
-        <TextField id="username" label="USERNAME" variant="filled" />
-        <TextField id="password" label="PASSWORD" variant="filled" />
+        <TextField
+          id="username"
+          label="Username"
+          variant="outlined"
+          helperText=" "
+        />
+        <TextField
+          id="password"
+          label="Password"
+          variant="outlined"
+          helperText=" "
+        />
         <TextField
           id="repeat-password"
-          label=" REPEAT PASSWORD"
-          variant="filled"
+          label=" Repeat Password"
+          variant="outlined"
+          helperText=" "
         />
 
         <Button

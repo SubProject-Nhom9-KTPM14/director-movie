@@ -4,36 +4,30 @@ import { Outlet } from "react-router";
 import { AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import classes from "./MainHeader.module.css";
+import logo from "../../assets/logo_purple.png";
 
 const MainHeader = () => {
-  const Logo = (
-    <Typography variant="h6" className={classes.title}>
-      LOGO
-    </Typography>
-  );
+  const Logo = <img src={logo} className={classes.logo} />;
 
   return (
     <div className={classes.container}>
       <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
-          <div className={classes["home-menu"]}>
-            {Logo}
-
-            <div>
-              <Button color="inherit" className={classes["menu-button"]}>
-                Home
-              </Button>
-              <Button color="inherit" className={classes["menu-button"]}>
-                Movies
-              </Button>
-            </div>
-          </div>
-
-          <div>
-            <Button color="inherit" className={classes["menu-button"]}>
+        <Toolbar
+          className={classes.toolbar}
+          style={{ paddingLeft: 100, paddingRight: 100 }}
+        >
+          {Logo}
+          <div className={classes.buttons}>
+            <Button color="default" className={classes["menu-button"]}>
+              Home
+            </Button>
+            <Button color="default" className={classes["menu-button"]}>
+              Movies
+            </Button>
+            <Button color="default" className={classes["menu-button"]}>
               Register
             </Button>
-            <Button color="inherit" className={classes["menu-button"]}>
+            <Button color="default" className={classes["menu-button"]}>
               Login
             </Button>
           </div>

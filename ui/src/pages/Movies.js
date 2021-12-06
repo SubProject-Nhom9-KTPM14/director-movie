@@ -1,7 +1,139 @@
 import React from "react";
 
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+
+import classes from "./Movies.module.css";
+
 const Movies = () => {
-  return <div>Movie Page</div>;
+  return (
+    <main className={classes.container}>
+      <div className={classes.grid}>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="https://cdn.shopify.com/s/files/1/0548/8404/0870/products/TheFrontLine-WarMoviePoster_821048c5-929c-44af-97ea-75dc51073889_5000x.jpg?v=1617381737"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+              >
+                The Front Line
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+              >
+                Moonlight
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="https://cdn.shopify.com/s/files/1/0548/8404/0870/products/TheFrontLine-WarMoviePoster_821048c5-929c-44af-97ea-75dc51073889_5000x.jpg?v=1617381737"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+              >
+                The Front Line
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+              >
+                Moonlight
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="https://cdn.shopify.com/s/files/1/0548/8404/0870/products/TheFrontLine-WarMoviePoster_821048c5-929c-44af-97ea-75dc51073889_5000x.jpg?v=1617381737"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+              >
+                The Front Line
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217"
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+              >
+                Moonlight
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </div>
+    </main>
+  );
 };
 
 export default Movies;

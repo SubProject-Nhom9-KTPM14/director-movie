@@ -7,17 +7,27 @@ import classes from "./Login.module.css";
 const Login = () => {
   const userId = useSelector((state) => state.user.userId);
   const Title = (
-    <Typography variant="h6" className={classes.title}>
+    <Typography variant="h5" className={classes.title}>
       LOGIN
     </Typography>
   );
 
   return (
     <main className={classes.container}>
-      {Title}
       <form className={classes.form}>
-        <TextField id="username" label="USERNAME" variant="filled" />
-        <TextField id="password" label="PASSWORD" variant="filled" />
+        {Title}
+        <TextField
+          id="username"
+          label="Username"
+          variant="standard"
+          helperText=" "
+        />
+        <TextField
+          id="password"
+          label="Password"
+          variant="standard"
+          helperText=" "
+        />
         <Button
           size="large"
           variant="contained"
@@ -27,7 +37,6 @@ const Login = () => {
           Login
         </Button>
       </form>
-      <p></p>
     </main>
   );
 };
