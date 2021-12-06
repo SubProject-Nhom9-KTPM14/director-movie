@@ -10,7 +10,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-
 public class DirectorApplication {
 
 	public static void main(String[] args) {

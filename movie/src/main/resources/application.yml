@@ -4,12 +4,11 @@ server:
 spring:
   application:
     name: MOVIE-SERVICE
-
   config:
     import: "optional:configserver:"
-    cloud:
-      config:
-        uri: http://localhost:8888
+  cloud:
+    config:
+      uri: http://localhost:8888
 
   redis:
     host: localhost
