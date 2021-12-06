@@ -20,4 +20,5 @@ public class MovieController {
     private ResponseTemplateVO getMovieWithDirectorById(@PathVariable("id") Long id){
         return movieService.getMovieWithDirectorById(id);
     }
+
 }
