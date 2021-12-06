@@ -7,6 +7,7 @@ spring:
 
   config:
     import: "optional:configserver:"
+<<<<<<< HEAD
     cloud:
       config:
         uri: http://localhost:8888
@@ -119,3 +120,19 @@ resilience4j:
 
 
 
+=======
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    lettuce:
+      shutdown-timeout: 30000
+      pool:
+        max-active: 30
+        max-idle: 8
+        min-idle: 0
+>>>>>>> c55b702f0aa7655b0e894519e3a609a491ba33e0
