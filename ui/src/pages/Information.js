@@ -1,17 +1,17 @@
 import React, { useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserById } from "../actions/user.action";
+import { getDirectorById } from "../actions/director.action";
 
 import { Avatar, Typography } from "@material-ui/core";
 import classes from "./Information.module.css";
 
 const Information = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.userId);
-  const userprofile = useSelector((state) => state.user.userprofile);
+  const userId = useSelector((state) => state.director.userId);
+  const userprofile = useSelector((state) => state.director.userprofile);
 
   useEffect(() => {
-    dispatch(getUserById(userId));
+    dispatch(getDirectorById(userId));
   }, []);
 
   return (

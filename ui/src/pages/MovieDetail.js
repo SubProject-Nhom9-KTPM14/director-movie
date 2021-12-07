@@ -12,7 +12,7 @@ import classes from "./MovieDetail.module.css";
 
 const MovieDetail = (props) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.userId);
+  const userId = useSelector((state) => state.director.userId);
   const movieDetail = useSelector((state) => state.movie.movieDetail);
   const { movieId } = useParams();
 
@@ -48,7 +48,7 @@ const MovieDetail = (props) => {
               <div>
                 <p
                   className={classes.rated}
-                >{`Rated ${movieDetail.movie.rated}`}</p>
+                >{`Rating ${movieDetail.movie.rated}`}</p>
               </div>
               <div>
                 <p className={classes.des}>Description:</p>

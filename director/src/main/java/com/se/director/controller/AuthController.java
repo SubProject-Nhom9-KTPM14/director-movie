@@ -6,6 +6,7 @@ import com.se.director.model.Token;
 import com.se.director.service.DirectorService;
 import com.se.director.service.TokenService;
 import com.se.director.util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/directors")
+@CrossOrigin(origins = "http://localhost:3000")
+@Slf4j
 public class AuthController {
 
     @Autowired
@@ -64,11 +68,6 @@ public class AuthController {
         }
 
     }
-    @GetMapping("/{id}")
-    public  Director getDi(@PathVariable Long id){
-        return directorService.get(id);
-    }
-
     @GetMapping("/hello")
     @PreAuthorize("hasAnyAuthority('USER')")
     public ResponseEntity hello(){
