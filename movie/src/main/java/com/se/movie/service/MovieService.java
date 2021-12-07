@@ -39,14 +39,16 @@ public class MovieService {
         this.redisTemplate = redisTemplate;
         this.hashOperations = redisTemplate.opsForHash();
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public Movie saveMovie (Movie mov){
         Movie movie = movieRepository.saveAndFlush(mov);
         hashOperations.put("MOVIE", movie.getId(), movie);
         logger.info(String.format("MOVIE with ID %s saved", movie.getId()));
         return movie;
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public Movie getMovieById(Long id){
         Movie movie = (Movie) hashOperations.get("MOVIE", id);
         if(movie != null){
@@ -63,9 +65,8 @@ public class MovieService {
         return null;
     }
 
-    @RateLimiter(name = "timeoutExample")
-   // @Retry(name="intervalFunctionRandomExample")
     @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public ResponseTemplateVO getMovieWithDirectorById(Long movieId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Movie movie = getMovieById(movieId);
@@ -77,7 +78,8 @@ public class MovieService {
         return vo;
     }
 
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public List<Movie> getMoviesByDirectorId (Long directorId){
         return movieRepository.findMoviesByDirectorId(directorId);
     }

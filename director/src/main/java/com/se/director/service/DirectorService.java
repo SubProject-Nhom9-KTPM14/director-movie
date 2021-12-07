@@ -3,6 +3,8 @@ package com.se.director.service;
 import com.se.director.authen.UserPrincipal;
 import com.se.director.model.Director;
 import com.se.director.repository.DirectorRepository;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +37,8 @@ public class DirectorService {
         this.redisTemplate = redisTemplate;
         this.hashOperations = redisTemplate.opsForHash();
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public Director getDirectorById(Long id){
         Director director = (Director) hashOperations.get("DIRECTOR", id);
         if(director != null){
@@ -49,12 +52,14 @@ public class DirectorService {
         }
         return null;
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public List<Director> getAllDirectors(){
 //            return directorRepository.findAll();
         return hashOperations.values("DIRECTOR");
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public Director updateDirector(Director director, Long id){
         Director dir = directorRepository.findById(id).get();
         dir.setFirstName(director.getFirstName());
@@ -68,18 +73,23 @@ public class DirectorService {
         logger.info(String.format("User with ID %s updated", id));
         return directorRepository.save(dir);
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public void deleteDirector(Long id){
         hashOperations.delete("DIRECTOR", id);
         directorRepository.deleteById(id);
         logger.info(String.format("User with ID %s deleted", id));
     }
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public Director createDirector(Director user) {
         Director director = directorRepository.saveAndFlush(user);
         hashOperations.put("DIRECTOR", director.getId(), director);
         logger.info(String.format("DIRECTOR with ID %s saved", user.getId()));
         return director;
     }
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public UserPrincipal findByUsername(String username) {
         Director user = directorRepository.findByUsername(username);
         UserPrincipal userPrincipal = new UserPrincipal();
@@ -93,7 +103,8 @@ public class DirectorService {
         }
         return userPrincipal;
     }
-
+    @Retry(name="basic")
+    @RateLimiter(name="basicExample")
     public Director get(Long id){
         return directorRepository.findById(id).get();
     }
