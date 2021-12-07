@@ -6,22 +6,33 @@ import Information from "./pages/Information";
 import Login from "./pages/Login";
 import MovieDetail from "./pages/MovieDetail";
 import Movies from "./pages/Movies";
+import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 
 const Router = () => {
   return useRoutes([
-    {
-      path: "/",
-      element: <MainHeader />,
-      children: [
-        { path: "login", element: <Login /> },
-        { path: "register", element: <Register /> },
-        { path: "information", element: <Information /> },
-        { path: "movies", element: <Movies /> },
-        { path: "moviedetail", element: <MovieDetail /> },
-        { path: "/", element: <Navigate to="/login" /> },
-      ],
-    },
+    localStorage.getItem('user_authenticate') ?
+      {
+        path: "/",
+        element: <MainHeader />,
+        children: [
+          { path: "information", element: <Information /> },
+          { path: "movies", element: <Movies /> },
+          { path: "moviedetail", element: <MovieDetail /> },
+          { path: "/", element: <Navigate to="/login" /> },
+          { path: "*", element: <Navigate to="/movies" /> }
+        ],
+      } :
+      {
+        path: "/",
+        element: <MainHeader />,
+        children: [
+          { path: "login", element: <Login /> },
+          { path: "404", element: <NotFound /> },
+          { path: "register", element: <Register /> },
+          { path: "*", element: <Navigate to="/404" /> }
+        ],
+      },
   ]);
 };
 
