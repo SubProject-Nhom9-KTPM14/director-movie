@@ -227,6 +227,7 @@ const Register = ({ ...props }) => {
           label="Password"
           name="password"
           value={values.password}
+          type="password"
           onChange={handleInputChange}
           variant="outlined"
           helperText=" "
@@ -238,6 +239,7 @@ const Register = ({ ...props }) => {
           variant="outlined"
           name="passwordconfirm"
           helperText=" "
+          type="password"
           value={values.passwordconfirm}
           onChange={handleInputChange}
           {...(errors.passwordconfirm && { error: true, helperText: errors.passwordconfirm })}
