@@ -1,8 +1,24 @@
 import apiService from "../services/api.service";
 
 export const ACTION_TYPES = {
-  GETMOVIEBYID: "GET MOVIE BY ID",
-  GET_MOVIE_BY_DIRECTOR_ID: "GET MOVIE BY DIRECTOR ID",
+  GETMOVIEBYID: "GETMOVIEBYID",
+  ADDMOVIE: "ADDMOVIE",
+  GET_MOVIES_BY_DIRECTOR_ID: "GET_MOVIES_BY_DIRECTOR_ID",
+};
+
+export const getMoviesByDirectorId = (id) => (dispatch) => {
+  apiService
+    .movies()
+    .getMoviesByDirectorId(id)
+    .then((response) => {
+      dispatch({
+        type: ACTION_TYPES.GET_MOVIES_BY_DIRECTOR_ID,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 export const getMovieById = (id) => (dispatch) => {
@@ -20,17 +36,15 @@ export const getMovieById = (id) => (dispatch) => {
     });
 };
 
-export const getMovieByDirectorId = (id) => (dispatch) => {
+export const addMovie = (movie) => (dispatch) => {
   apiService
     .movies()
-    .getMovieByDirectorId(id)
+    .saveMovie(movie)
     .then((response) => {
       dispatch({
-        type: ACTION_TYPES.GET_MOVIE_BY_DIRECTOR_ID,
+        type: ACTION_TYPES.ADDMOVIE,
         payload: response.data,
       });
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((err) => console.log("err-addmovie", err));
 };

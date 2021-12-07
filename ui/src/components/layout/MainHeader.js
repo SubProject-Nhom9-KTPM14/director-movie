@@ -20,34 +20,51 @@ const MainHeader = () => {
         >
           {Logo}
           <div className={classes.buttons}>
-            <Button
-              color="default"
-              className={classes["menu-button"]}
-              onClick={() => navigate("/information")}
-            >
-              Home
-            </Button>
-            <Button
-              color="default"
-              className={classes["menu-button"]}
-              onClick={() => navigate("/movies")}
-            >
-              Movies
-            </Button>
-            <Button
-              color="default"
-              className={classes["menu-button"]}
-              onClick={() => navigate("/register")}
-            >
-              Register
-            </Button>
-            <Button
-              color="default"
-              className={classes["menu-button"]}
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </Button>
+            {
+              localStorage.getItem('user_authenticate') ?
+                <div>
+                  <Button
+                    color="default"
+                    className={classes["menu-button"]}
+                    onClick={() => navigate("/information")}
+                  >
+                    Home
+                  </Button>
+                  <Button
+                    color="default"
+                    className={classes["menu-button"]}
+                    onClick={() => navigate("/movies")}
+                  >
+                    Movies
+                  </Button>
+                  <Button
+                    color="default"
+                    className={classes["menu-button"]}
+                    onClick={() => {
+                      localStorage.setItem('user_authenticate', '')
+                      navigate("/login")
+                    }
+                    }
+                  >
+                    Logout
+                  </Button>
+                </div> : <div>
+                  <Button
+                    color="default"
+                    className={classes["menu-button"]}
+                    onClick={() => navigate("/register")}
+                  >
+                    Register
+                  </Button>
+                  <Button
+                    color="default"
+                    className={classes["menu-button"]}
+                    onClick={() => navigate("/login")}
+                  >
+                    Login
+                  </Button>
+                </div>
+            }
           </div>
         </Toolbar>
       </AppBar>
