@@ -11,7 +11,7 @@ const Information = () => {
   const userprofile = useSelector((state) => state.user.userprofile);
 
   useEffect(() => {
-    dispatch(getUserById(userId));
+    dispatch(getUserById(1));
   }, []);
 
   return (

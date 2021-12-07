@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/directors")
 @CrossOrigin
 @Slf4j
-@CrossOrigin
 public class DirectorController {
     @Autowired
     private DirectorService directorService;

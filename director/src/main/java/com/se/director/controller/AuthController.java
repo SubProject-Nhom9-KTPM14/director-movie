@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/directors")
 @CrossOrigin
 public class AuthController {
 
@@ -64,10 +65,6 @@ public class AuthController {
             return ResponseEntity.ok(token.getToken());
         }
 
-    }
-    @GetMapping("/{id}")
-    public  Director getDi(@PathVariable Long id){
-        return directorService.get(id);
     }
 
     @GetMapping("/hello")
