@@ -37,12 +37,17 @@ public class DirectorService {
     }
 
     public Director getDirectorById(Long id){
-//        Optional<Director> obj = directorRepository.findById(id);
-//        if(obj.isPresent()){
-//            return obj.get();
-//        }
-//        return null;
-        return (Director) hashOperations.get("DIRECTOR", id);
+        Director director = (Director) hashOperations.get("DIRECTOR", id);
+        if(director != null){
+            return director;
+        }
+        director = directorRepository.findById(id).get();
+        if(director != null){
+            hashOperations.put("DIRECTOR", director.getId(), director);
+            logger.info(String.format("DIRECTOR with ID %s saved", director.getId()));
+            return director;
+        }
+        return null;
     }
 
     public List<Director> getAllDirectors(){

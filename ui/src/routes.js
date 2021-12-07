@@ -8,6 +8,7 @@ import MovieDetail from "./pages/MovieDetail";
 import Movies from "./pages/Movies";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
+// import AddMovie from "./pages/AddMovie";
 
 const Router = () => {
   return useRoutes([
@@ -18,7 +19,8 @@ const Router = () => {
         children: [
           { path: "information", element: <Information /> },
           { path: "movies", element: <Movies /> },
-          { path: "moviedetail", element: <MovieDetail /> },
+          { path: "movies/:movieId", element: <MovieDetail /> },
+          // { path: "addmovie", element: <AddMovie /> },
           { path: "/", element: <Navigate to="/login" /> },
           { path: "*", element: <Navigate to="/movies" /> }
         ],
