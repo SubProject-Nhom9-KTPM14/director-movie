@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/directors")
+@CrossOrigin
 @Slf4j
 public class DirectorController {
     @Autowired
