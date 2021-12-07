@@ -8,6 +8,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import classes from "./Movies.module.css";
 
@@ -19,13 +21,17 @@ const Movies = () => {
   //   dispatch(actions.getMovieById(1));
   // }, []);
 
+  const navigate = useNavigate();
   // console.log("movies", movie);
 
   return (
     <main className={classes.container}>
+      <div className={classes.top}>
+        <Button onClick={() => navigate("/AddMovie")}> ADD Movie</Button>
+      </div>
       <div className={classes.grid}>
         <Card className={classes.card}>
-          <CardActionArea>
+          <CardActionArea onClick={() => navigate("/MovieDetail")}>
             <CardMedia
               className={classes.media}
               image="https://cdn.shopify.com/s/files/1/0548/8404/0870/products/TheFrontLine-WarMoviePoster_821048c5-929c-44af-97ea-75dc51073889_5000x.jpg?v=1617381737"
@@ -144,7 +150,7 @@ const Movies = () => {
           </CardActionArea>
         </Card>
       </div>
-    </main>
+    </main >
   );
 };
 

@@ -4,6 +4,7 @@ export default {
   movies(url = baseApi + "movies/") {
     return {
       getMovieById: (id) => axios.get(url + id),
+      saveMovie: (movie) => axios.post(url + "saveMovie", movie),
     };
   },
 };

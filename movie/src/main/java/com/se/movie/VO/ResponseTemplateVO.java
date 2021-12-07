@@ -13,4 +13,20 @@ import lombok.Setter;
 public class ResponseTemplateVO {
     private Movie movie;
     private Director director;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
 }
