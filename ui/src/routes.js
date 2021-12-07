@@ -18,7 +18,7 @@ const Router = () => {
         { path: "register", element: <Register /> },
         { path: "information", element: <Information /> },
         { path: "movies", element: <Movies /> },
-        { path: "moviedetail", element: <MovieDetail /> },
+        { path: "movies/:movieId", element: <MovieDetail /> },
         { path: "/", element: <Navigate to="/login" /> },
       ],
     },

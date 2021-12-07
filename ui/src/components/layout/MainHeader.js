@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router";
 
-import { AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import classes from "./MainHeader.module.css";
 import logo from "../../assets/logo_purple.png";
@@ -24,7 +23,7 @@ const MainHeader = () => {
             <Button
               color="default"
               className={classes["menu-button"]}
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/information")}
             >
               Home
             </Button>

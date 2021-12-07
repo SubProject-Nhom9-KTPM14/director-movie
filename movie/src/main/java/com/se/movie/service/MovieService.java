@@ -60,7 +60,6 @@ public class MovieService {
    // @Retry(name="intervalFunctionRandomExample")
     @Retry(name="basic")
     public ResponseTemplateVO getMovieWithDirectorById(Long movieId) {
-
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Movie movie = getMovieById(movieId);
         System.out.println(movie);
@@ -70,4 +69,10 @@ public class MovieService {
 
         return vo;
     }
+
+
+    public List<Movie> getMoviesByDirectorId (Long directorId){
+        return movieRepository.findMoviesByDirectorId(directorId);
+    }
+
 }

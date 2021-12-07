@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/movies")
@@ -28,6 +31,17 @@ public class MovieController {
     @PostMapping("/saveMovie")
     public Movie saveMovie(@RequestBody Movie movie){
         return movieService.saveMovie(movie);
+    }
+
+    @GetMapping("/movies-by-director/{directorid}")
+    public List<Movie> getMoviesByDirectorId(@PathVariable("directorid") Long id){
+        List<Movie> list = new ArrayList<Movie>();
+        List<Movie> movies = movieService.getMoviesByDirectorId(id);
+        if(movies != null && movies.size() > 0 ){
+            list = movies;
+        }
+
+        return list;
     }
 
 }
