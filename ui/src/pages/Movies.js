@@ -10,12 +10,13 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Button } from "@material-ui/core";
-
+import jwt_decode from "jwt-decode";
 import classes from "./Movies.module.css";
 
 const Movies = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.director.userId);
+
+  const userId = jwt_decode(localStorage.getItem('user_authenticate')).User.userId
   const moviesByDirectorId = useSelector(
     (state) => state.movie.moviesByDirectorId
   );

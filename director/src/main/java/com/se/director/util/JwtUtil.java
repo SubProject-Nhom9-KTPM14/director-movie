@@ -20,7 +20,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
-    private static final String USER = "Group 9";
+    private static final String USER = "User";
     private static final String SECRET = "This is our secretkey director and movies";
 
     public String generateToken(UserPrincipal user) {

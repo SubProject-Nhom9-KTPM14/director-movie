@@ -4,6 +4,7 @@ import * as actions from '../actions/director.action';
 import { Typography, Button, TextField } from "@material-ui/core";
 import classes from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { useAlert } from 'react-alert'
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -16,9 +17,11 @@ const Login = () => {
       LOGIN
     </Typography>
   );
+  const alert = useAlert()
   useEffect(() => {
     if (localStorage.getItem('user_authenticate')) {
       navigate("/movies")
+      alert.success("Login successfull !!!")
     }
   }, [user])
   const onLogin = () => {
