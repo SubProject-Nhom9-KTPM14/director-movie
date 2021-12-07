@@ -48,12 +48,19 @@ public class MovieService {
     }
 
     public Movie getMovieById(Long id){
-//        Optional<Movie> obj = movieRepository.findById(id);
-//        if(obj.isPresent()){
-//            return obj.get();
-//        }
-//        return null;
-        return (Movie) hashOperations.get("MOVIE", id);
+        Movie movie = (Movie) hashOperations.get("MOVIE", id);
+        if(movie != null){
+            return movie;
+        }
+
+        movie = movieRepository.findById(id).get();
+        if(movie != null){
+            hashOperations.put("MOVIE", movie.getId(), movie);
+            logger.info(String.format("MOVIE with ID %s saved", movie.getId()));
+            return movie;
+        }
+
+        return null;
     }
 
     @RateLimiter(name = "timeoutExample")
