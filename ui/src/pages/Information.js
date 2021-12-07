@@ -1,13 +1,12 @@
 import React, { useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDirectorById } from "../actions/director.action";
-
+import jwt_decode from "jwt-decode";
 import { Avatar, Typography } from "@material-ui/core";
 import classes from "./Information.module.css";
-
 const Information = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.director.userId);
+  const userId = jwt_decode(localStorage.getItem('user_authenticate')).User.userId
   const userprofile = useSelector((state) => state.director.userprofile);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const Information = () => {
             <Typography variant="h4">{`${userprofile.firstName} ${userprofile.lastName}`}</Typography>
           </div>
           <div className={classes.info}>
-            <div>
+            <div >
               <p className={classes.title}>First Name:</p>
               <p>{userprofile.firstName}</p>
             </div>
