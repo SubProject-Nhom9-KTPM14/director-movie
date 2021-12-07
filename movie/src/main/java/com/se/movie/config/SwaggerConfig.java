@@ -1,5 +1,6 @@
 package com.se.movie.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -18,6 +19,4 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
-
-
 }
