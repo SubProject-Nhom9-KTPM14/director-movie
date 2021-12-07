@@ -16,7 +16,7 @@ import Rating from '@material-ui/lab/Rating';
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import * as action from ".././actions/movie.action";
-
+import jwt_decode from "jwt-decode";
 const labels = {
   0.5: 'Useless',
   1: 'Useless+',
@@ -38,7 +38,7 @@ const AddMovie = () => {
   const [nameMovie, setNameMovie] = useState(null);
   const [description, setDesciption] = useState(null);
   const [poster, setPoster] = useState("https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217");
-  const director = 1;
+  const director = jwt_decode(localStorage.getItem('user_authenticate')).User.userId
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
