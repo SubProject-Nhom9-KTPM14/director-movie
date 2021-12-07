@@ -12,14 +12,14 @@ import Typography from "@material-ui/core/Typography";
 import classes from "./Movies.module.css";
 
 const Movies = () => {
-  const dispatch = useDispatch();
-  const [movieId, setMovieId] = useState(1);
-  const movie = useSelector((state) => state.movie.movieId);
-  useEffect(() => {
-    dispatch(actions.getMovieById(1));
-  }, []);
+  // const dispatch = useDispatch();
+  // const [movieId, setMovieId] = useState(1);
+  // const movie = useSelector((state) => state.movie.movieId);
+  // useEffect(() => {
+  //   dispatch(actions.getMovieById(1));
+  // }, []);
 
-  console.log("movies", movie);
+  // console.log("movies", movie);
 
   return (
     <main className={classes.container}>
