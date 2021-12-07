@@ -24,4 +24,15 @@ export default {
       getCity: () => axios.get(url),
     };
   },
+
+  upload(url = baseApi + "storage/") {
+    return {
+      image: (formData) =>
+        axios.post(url + "uploadFile/", formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        }),
+    };
+  },
 };
