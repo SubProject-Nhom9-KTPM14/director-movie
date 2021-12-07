@@ -16,7 +16,13 @@ export default {
       register: (director) => axios.post(url + "register", director),
       login: (director) => axios.post(url + "login", director),
       allDirec: () => axios.get(url + "/allDirector"),
-      getDirectorById: (id) => axios.get(url + id),
+      getDirectorById: (id) => axios.get(url + id, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Token ${localStorage.getItem('user_authenticate')}`
+        }
+      }),
     };
   },
   address(url = "https://provinces.open-api.vn/api/") {
