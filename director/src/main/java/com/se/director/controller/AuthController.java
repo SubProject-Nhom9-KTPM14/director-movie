@@ -64,10 +64,10 @@ public class AuthController {
         }
 
     }
-    @GetMapping("/{id}")
-    public  Director getDi(@PathVariable Long id){
-        return directorService.get(id);
-    }
+//    @GetMapping("/{id}")
+//    public  Director getDi(@PathVariable Long id){
+//        return directorService.get(id);
+//    }
 
     @GetMapping("/hello")
     @PreAuthorize("hasAnyAuthority('USER')")
