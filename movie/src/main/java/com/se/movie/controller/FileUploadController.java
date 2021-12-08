@@ -33,7 +33,7 @@ public class FileUploadController {
     @PostMapping("/upload-file")
     public ResponseEntity<Object> fileUpload(@RequestParam("File") MultipartFile file) throws IOException {
         try {
-            String FILE_DIRECTORY = FILE_MAIN_DIRECTORY + getFileExtension(file) + "/";
+            String FILE_DIRECTORY = FILE_MAIN_DIRECTORY + this.getFileExtension(file) + "/";
             File directory = new File(FILE_DIRECTORY);
             // Create a folder if not exist
             if (!directory.exists()) {
@@ -49,7 +49,6 @@ public class FileUploadController {
             fileObject.put("fileUrl", getFileUrl(myFile));
             fileObject.put("fileExtension", this.getFileExtension(file));
             fileObject.put("fileName", file.getOriginalFilename());
-            fileObject.put("fileExtension", this.getFileExtension(file));
             fileObject.put("status", "Upload successfully");
             TimeUnit.SECONDS.sleep(3);
             return new ResponseEntity<Object>(fileObject, HttpStatus.OK);
@@ -70,7 +69,7 @@ public class FileUploadController {
     private String getFileUrl(File file) {
         String name = file.getAbsolutePath();
         int lastIndexOf = name.lastIndexOf("storage");
-        String fileUrl = "http://localhost:9191/" + name.substring(lastIndexOf).replace("\\", "/");
+        String fileUrl = "http://localhost:9002/" + name.substring(lastIndexOf).replace("\\", "/");
         return fileUrl;
     }
 }

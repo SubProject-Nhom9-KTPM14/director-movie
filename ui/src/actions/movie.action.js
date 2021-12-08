@@ -48,3 +48,7 @@ export const addMovie = (movie) => (dispatch) => {
     })
     .catch((err) => console.log("err-addmovie", err));
 };
+
+export const uploadFile = (formData) => {
+  return apiService.upload().image(formData);
+};

@@ -4,6 +4,7 @@ import { getDirectorById } from "../actions/director.action";
 import jwt_decode from "jwt-decode";
 import { Avatar, Typography } from "@material-ui/core";
 import classes from "./Information.module.css";
+
 const Information = () => {
   const dispatch = useDispatch();
   const userId = jwt_decode(localStorage.getItem('user_authenticate')).User.userId

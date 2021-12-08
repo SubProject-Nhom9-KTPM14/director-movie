@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 
+import jwt_decode from "jwt-decode";
 import { getMovieById } from "../actions/movie.action";
 import { Avatar, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
@@ -12,7 +13,8 @@ import classes from "./MovieDetail.module.css";
 
 const MovieDetail = (props) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.director.userId);
+  const userId = jwt_decode(localStorage.getItem("user_authenticate")).User
+    .userId;
   const movieDetail = useSelector((state) => state.movie.movieDetail);
   const { movieId } = useParams();
 

@@ -30,6 +30,11 @@ public class DirectorController {
         return directorService.getDirectorById(id);
     }
 
+    @GetMapping("/get/{id}")
+    public Director getDirectorId(@PathVariable("id")Long id){
+        return directorService.getDirectorById(id);
+    }
+
     @GetMapping("/allDirector")
     public ResponseEntity<List<Director>> getAllDirector(){
         return ResponseEntity.ok(directorService.getAllDirectors());

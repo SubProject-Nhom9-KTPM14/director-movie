@@ -15,14 +15,16 @@ import classes from "./Movies.module.css";
 
 const Movies = () => {
   const dispatch = useDispatch();
-
-  const userId = jwt_decode(localStorage.getItem('user_authenticate')).User.userId
+  const userId = jwt_decode(localStorage.getItem("user_authenticate")).User
+    .userId;
   const moviesByDirectorId = useSelector(
     (state) => state.movie.moviesByDirectorId
   );
   const navigate = useNavigate();
 
-  dispatch(actions.getMoviesByDirectorId(userId));
+  useEffect(() => {
+    dispatch(actions.getMoviesByDirectorId(userId));
+  }, []);
 
   return (
     <main className={classes.container}>
