@@ -9,7 +9,14 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/shabbirdwd53/config-server
+          uri: https://github.com/LeNhatHuy220100/cloud-config-server
           default-label: main
           clone-on-start: true
         bootstrap: false
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URI:https://mysterious-harbor-17300.herokuapp.com/eureka}

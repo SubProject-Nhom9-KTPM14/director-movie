@@ -8,7 +8,7 @@ spring:
     import: "optional:configserver:"
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: https://lit-reef-49057.herokuapp.com/
 
   redis:
     host: localhost

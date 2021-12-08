@@ -27,7 +27,7 @@ spring:
           predicates:
             - Path=/directors/**
     config:
-      uri: http://localhost:8888
+      uri: https://lit-reef-49057.herokuapp.com/
 
 #eureka:
 #  client:
