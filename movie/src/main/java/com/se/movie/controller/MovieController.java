@@ -3,7 +3,11 @@ package com.se.movie.controller;
 import com.se.movie.VO.ResponseTemplateVO;
 import com.se.movie.model.Movie;
 import com.se.movie.service.MovieService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +19,8 @@ import java.util.List;
 @RequestMapping("/movies")
 @Slf4j
 public class MovieController {
+    final Logger logger = LoggerFactory.getLogger(MovieController.class);
+
     @Autowired
     private MovieService movieService;
 
@@ -43,5 +49,6 @@ public class MovieController {
 
         return list;
     }
+
 
 }

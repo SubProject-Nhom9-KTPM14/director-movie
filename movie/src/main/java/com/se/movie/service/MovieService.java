@@ -16,11 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import io.github.resilience4j.retry.annotation.Retry;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @Slf4j
@@ -72,11 +70,11 @@ public class MovieService {
     public ResponseTemplateVO getMovieWithDirectorById(Long movieId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Movie movie = getMovieById(movieId);
-        System.out.println(movie);
         Director director = restTemplate.getForObject("http://DIRECTOR-SERVICE/directors/get/" + movie.getDirectorId(), Director.class);
         vo.setMovie(movie);
         vo.setDirector(director);
 
+        logger.info(LocalTime.now()+": service called");
         return vo;
     }
 
@@ -85,5 +83,6 @@ public class MovieService {
     public List<Movie> getMoviesByDirectorId (Long directorId){
         return movieRepository.findMoviesByDirectorId(directorId);
     }
+
 
 }

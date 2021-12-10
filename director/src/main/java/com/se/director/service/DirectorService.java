@@ -37,6 +37,7 @@ public class DirectorService {
         this.redisTemplate = redisTemplate;
         this.hashOperations = redisTemplate.opsForHash();
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public Director getDirectorById(Long id){
@@ -52,12 +53,14 @@ public class DirectorService {
         }
         return null;
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public List<Director> getAllDirectors(){
 //            return directorRepository.findAll();
         return hashOperations.values("DIRECTOR");
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public Director updateDirector(Director director, Long id){
@@ -73,6 +76,7 @@ public class DirectorService {
         logger.info(String.format("User with ID %s updated", id));
         return directorRepository.save(dir);
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public void deleteDirector(Long id){
@@ -80,6 +84,7 @@ public class DirectorService {
         directorRepository.deleteById(id);
         logger.info(String.format("User with ID %s deleted", id));
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public Director createDirector(Director user) {
@@ -88,6 +93,7 @@ public class DirectorService {
         logger.info(String.format("DIRECTOR with ID %s saved", user.getId()));
         return director;
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public UserPrincipal findByUsername(String username) {
@@ -103,6 +109,7 @@ public class DirectorService {
         }
         return userPrincipal;
     }
+
     @Retry(name="basic")
     @RateLimiter(name="basicExample")
     public Director get(Long id){
